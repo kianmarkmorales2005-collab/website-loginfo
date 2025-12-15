@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hobbies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+    }
+    nav {
+      left: -200px;
+      transition: left 0.3s ease-in-out;
+      width: 200px;
+      background: #444;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      padding-top: 60px;
+      z-index: 10;
+    }
+    nav.active {
+      left: 0;
+    }
+    nav a {
+      display: block;
+      color: #fff;
+      padding: 10px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background: #666;
+    }
+    main {
+      margin-left: 20px;
+      padding: 20px;
+      transition: margin-left 0.3s ease-in-out;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    #nav-toggle {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 20;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px 40px 40px 40px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+      text-align: center;
+    }
+    .close-button {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .social-links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    .social-link:hover {
+      transform: scale(1.05);
+    }
+    .social-link svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    .facebook { background-color: #1877F2; }
+    .instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+    .twitter { background-color: #1DA1F2; }
+
+    /* Hobbies Page Styles */
+    .hobbies-container {
+      max-width: 900px;
+      margin: auto;
+    }
+    .hobbies-container h1 {
+        text-align: center;
+        font-size: 2.5em;
+        color: #333;
+        margin-bottom: 40px;
+    }
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .hobby-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hobby-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .hobby-card .icon {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+    .hobby-card h3 {
+        margin: 0;
+        font-size: 1.4em;
+        color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="nav-toggle">&#9776;</button>
+    <h1>Personal</h1>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="aboutme.html">About Me</a>
+    <a href="#" id="socials-link">Socials</a>
+    <a href="hobbies.html">Hobbies</a>
+  </nav>
+
+  <main>
+    <div class="hobbies-container">
+        <h1>Hobbies Hub</h1>
+        <div class="hobbies-grid">
+            <div class="hobby-card">
+                <div class="icon">🏋️</div>
+                <h3>Gym Workout</h3>
+            </div>
+            <div class="hobby-card">
+                <div class="icon">🎮</div>
+                <h3>Video Games</h3>
+            </div>
+            <div class="hobby-card">
+                <div class="icon">🎬</div>
+                <h3>Watching Shows</h3>
+            </div>
+            <div class="hobby-card">
+                <div class="icon">🏀</div>
+                <h3>Basketball</h3>
+            </div>
+            <div class="hobby-card">
+                <div class="icon">💻</div>
+                <h3>Coding</h3>
+            </div>
+            <div class="hobby-card">
+                <div class="icon">☕</div>
+                <h3>Drinking Coffee</h3>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <div id="socials-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>My Socials</h2>
+      <div class="social-links-container">
+        <a href="https://www.facebook.com/kianmark.morales" target="_blank" class="social-link facebook">
+          <svg fill="white" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+          <span>Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/kian_markk/" target="_blank" class="social-link instagram">
+          <svg fill="white" viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://x.com/notkianmark" target="_blank" class="social-link twitter">
+          <svg fill="white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>Twitter</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 My Blog
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('nav-toggle');
+      const nav = document.querySelector('nav');
+      const main = document.querySelector('main');
+      const socialsLink = document.getElementById('socials-link');
+      const socialsModal = document.getElementById('socials-modal');
+      const closeButton = document.querySelector('.close-button');
+
+      navToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        main.style.marginLeft = nav.classList.contains('active') ? '220px' : '20px';
+      });
+
+      socialsLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        socialsModal.classList.add('active');
+      });
+
+      closeButton.addEventListener('click', function() {
+        socialsModal.classList.remove('active');
+      });
+
+      window.addEventListener('click', function(e) {
+        if (e.target == socialsModal) {
+          socialsModal.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+     <a href="home.html">Home</a>
+     <a href="aboutme.html">About Me</a>
+     <a href="#" id="socials-link">Socials</a>
+-    <a href="#">Settings</a>
++    <a href="hobbies.html">Hobbies</a>
+   </nav>
+ 
+   <main>
+
+
+   <nav>
+     <a href="home.html">Home</a>
+     <a href="aboutme.html">About Me</a>
+     <a href="#" id="socials-link">Socials</a>
+-    <a href="#">Settings</a>
++    <a href="hobbies.html">Hobbies</a>
+   </nav>
+ 
+   <main>
+
+```
+

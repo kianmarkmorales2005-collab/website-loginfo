@@ -1,0 +1,317 @@
+!<DOCTYPE html>
+<html>
+<head>
+   
+    <title>
+        Log Information Web Dev</title>
+    </head>
+<style>
+ body {
+margin: 0;
+padding: 0;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+font-family: Arial, sans-serif;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('bgwebpage.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.auth-container h2 {
+text-align: center;
+color: #fff;
+text-shadow: 2px 2px 4px #000;
+}
+  .form {
+    display: none;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+.form.active {
+    display: block;
+  }
+
+  input {
+     width: 100%; 
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box; 
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background: #1eff00;
+    border: 1px solid #000000; 
+    border-radius: 10px;        
+    color: rgb(8, 8, 8);
+    cursor: pointer;
+}
+
+
+#loginForm {
+  background: rgba(255,255,255,0.9) url('formwebpage2.jpg') no-repeat center;
+  background-size: cover;
+}
+#registerForm {
+    background: url('formwebpage2.jpg') no-repeat center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    color: white; 
+}
+
+  .switch-text {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  a {
+    color: blue;
+    cursor: pointer;
+  }
+.center-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;      /
+}
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 55px; /* Make space for the button */
+  margin-bottom: 0;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    width: 50px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 0 6px 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
+    color: #555;
+}
+</style>
+<body>
+ <div class="auth-container">
+  
+<h2>Log information</h2>
+  
+  <div class="center-box">
+      <form id="registerForm" class="form active">
+        <h2>Create Your Account</h2>
+        <input type="text" id="registerFirstName" placeholder="First Name" required />
+        <input type="text" id="registerLastName" placeholder="Last Name" required />
+        <input type="email" id="registerEmail" placeholder="Email" required />
+        <div class="password-wrapper">
+          <input type="password" id="registerPassword" placeholder="Password" required />
+          <button type="button" id="toggleRegisterPassword" class="toggle-password">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+        <div class="password-wrapper">
+          <input type="password" id="ConfirmPassword" placeholder="Confirm Password" required />
+          <button type="button" id="toggleConfirmPassword" class="toggle-password">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+        </div>
+        <button type="submit">Register</button>
+        <h2>                        </h2>
+
+        
+       <div class="social-login" style="display:flex; flex-direction:column; gap:10px; margin-bottom:15px;">
+    <button class="fb-btn" style="padding:10px; display:flex; align-items:center; justify-content:center; gap:10px; background:#3b5998; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="20"> Login with Facebook
+    </button>
+
+    <button class="google-btn" style="padding:10px; display:flex; align-items:center; justify-content:center; gap:10px; background:white; color:#444; border:1px solid #ccc; border-radius:6px; cursor:pointer; font-weight:bold;">
+        <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" width="20"> Login with Google
+    </button>
+</div>
+
+
+<p class="switch-text">
+
+ <p class="switch-text">
+          Already have an account?
+          <a href="#" id="goToLogin">sign in</a>
+        </p>
+        <p id="registerStatusMsg" class="status-msg"></p>
+      </form>
+
+<form id="loginForm" class="form">
+
+  <h2>Login</h2>
+  <input type="email" id="loginEmail" placeholder="Email" required />  
+  <div class="password-wrapper">
+    <input type="password" id="loginPassword" placeholder="Password" required />
+    <button type="button" id="toggleLoginPassword" class="toggle-password">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+    </button>
+  </div>
+  <button type="submit">Login</button>
+  <p class="switch-text">
+    <a href="#" id="forgotPassword">Forgot password?</a>
+  </p>
+  <p class="switch-text">
+    <a href="#" id="goToRegister">sign up</a>
+  </p>
+</form></div>
+<script>
+  const registerForm = document.getElementById("registerForm");
+  const loginForm = document.getElementById("loginForm");
+
+  document.getElementById("goToLogin").addEventListener("click", function(e) {
+    e.preventDefault();
+    registerForm.classList.remove("active");
+    loginForm.classList.add("active");
+  });
+
+  document.getElementById("goToRegister").addEventListener("click", function(e) {
+    e.preventDefault();
+    loginForm.classList.remove("active");
+    registerForm.classList.add("active");
+  });
+  document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+if (document.getElementById("registerPassword").value !== document.getElementById("ConfirmPassword").value) {
+    alert("Passwords do not match.");
+    return;
+}
+    const userData = {
+        firstName: document.getElementById("registerFirstName").value,
+        lastName: document.getElementById("registerLastName").value,
+        email: document.getElementById("registerEmail").value,
+        password: document.getElementById("registerPassword").value
+        
+    };
+    
+    let users = JSON.parse(localStorage.getItem('websiteUsers')) || [];
+
+    const userExists = users.some(user => user.email === userData.email);
+
+    if (userExists) {
+        alert('An account with this email already exists.');
+    } else {
+        users.push(userData);
+        localStorage.setItem('websiteUsers', JSON.stringify(users));
+        alert('Registration successful! Please login.');
+        registerForm.classList.remove("active");
+        loginForm.classList.add("active");
+    }
+});
+
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const loginData = {
+        email: document.getElementById("loginEmail").value,
+        password: document.getElementById("loginPassword").value
+    };
+    
+    let users = JSON.parse(localStorage.getItem('websiteUsers')) || [];
+
+    const foundUser = users.find(user => user.email === loginData.email && user.password === loginData.password);
+
+    if (foundUser) {
+        alert('Login successful!');
+        localStorage.setItem("userAccount", JSON.stringify(foundUser));
+        window.location.href = "file:///C:/Users/Morales/Desktop/website%20folder%202/home.html";
+    } else {
+        alert('Invalid email or password.');
+    }
+});
+
+function setupPasswordToggle(inputId, buttonId) {
+    const passwordInput = document.getElementById(inputId);
+    const toggleButton = document.getElementById(buttonId);
+
+    const eyeOpenIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+    const eyeClosedIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+
+    toggleButton.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        if (type === 'password') {
+            this.innerHTML = eyeOpenIcon;
+        } else {
+            this.innerHTML = eyeClosedIcon;
+        }
+    });
+}
+
+setupPasswordToggle('registerPassword', 'toggleRegisterPassword');
+setupPasswordToggle('loginPassword', 'toggleLoginPassword');
+setupPasswordToggle('ConfirmPassword', 'toggleConfirmPassword');
+
+document.getElementById("forgotPassword").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const email = prompt("Please enter your email to reset your password:");
+    if (!email) {
+        return; 
+    }
+
+    let users = JSON.parse(localStorage.getItem('websiteUsers')) || [];
+    const userIndex = users.findIndex(user => user.email === email);
+
+    if (userIndex === -1) {
+        alert("No account found with that email Password.");
+    } else {
+        const newPassword = prompt("Enter your new password:");
+        if (newPassword) {
+            // Update the user's password
+            users[userIndex].password = newPassword;
+            // Save the updated users array back to localStorage
+            localStorage.setItem('websiteUsers', JSON.stringify(users));
+            alert("Your password has been reset successfully. Please login with your new password.");
+        } else {
+            alert("Password reset cancelled.");
+        }
+    }
+});
+
+
+
+</script>
+
+</div>
+</body>
+</html>
